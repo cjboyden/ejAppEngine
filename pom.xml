@@ -4,21 +4,21 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.ewerp.mud</groupId>
-    <artifactId>ejmud</artifactId>
+    <groupId>com.ewerp.engine</groupId>
+    <artifactId>ej-app-engine</artifactId>
     <version>0.1</version>
 
     <packaging>pom</packaging>
 
     <modules>
-        <module>ejmud-api</module>
-        <module>ejmud-api-test</module>
-        <module>ejmud-logging</module>
-        <module>ejmud-configuration</module>
-        <module>ejmud-plugin-manager</module>
-        <module>ejmud-content-manager</module>
-        <module>ejmud-command-engine</module>
-        <module>ejmud-session-manager</module>
+        <module>ej-app-engine-api</module>
+        <module>ej-app-engine-api-test</module>
+        <module>ej-app-engine-logging</module>
+        <module>ej-app-engine-configuration</module>
+        <module>ej-app-engine-plugin-manager</module>
+        <module>ej-app-engine-content-manager</module>
+        <module>ej-app-engine-command-engine</module>
+        <module>ej-app-engine-session-manager</module>
     </modules>
 
     <name>ejMud</name>
