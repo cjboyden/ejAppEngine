@@ -16,7 +16,7 @@ package com.ewerp.engine;
  * limitations under the License.
  */
 
-public class EjMudTest {
+public class EjAppTest {
 
     public void main(String[] args) {
 

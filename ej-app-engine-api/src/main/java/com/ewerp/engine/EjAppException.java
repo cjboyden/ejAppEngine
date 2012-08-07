@@ -16,22 +16,22 @@ package com.ewerp.engine;
  * limitations under the License.
  */
 
-public class EjMudException extends Exception {
+public class EjAppException extends Exception {
     private static final long serialVersionUID = 1L;
 
-    public EjMudException() {
+    public EjAppException() {
         super();
     }
 
-    public EjMudException(Throwable t) {
+    public EjAppException(Throwable t) {
         super(t);
     }
 
-    public EjMudException(String s) {
+    public EjAppException(String s) {
         super(s);
     }
 
-    public EjMudException(String s, Throwable t) {
+    public EjAppException(String s, Throwable t) {
         super(s, t);
     }
 }

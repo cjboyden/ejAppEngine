@@ -1,6 +1,6 @@
 package com.ewerp.engine.logging;
 
-import com.ewerp.engine.EjMudException;
+import com.ewerp.engine.EjAppException;
 import org.junit.Test;
 
 /**
@@ -28,7 +28,7 @@ public class TestMockLog {
     public void testMockLog() {
         ILog log = generateLog();
 
-        Exception e = new EjMudException();
+        Exception e = new EjAppException();
 
         log.logDebug("debug message");
         log.logDebug("debug message", e);

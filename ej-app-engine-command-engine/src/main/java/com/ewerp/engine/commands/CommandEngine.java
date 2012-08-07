@@ -1,6 +1,6 @@
 package com.ewerp.engine.commands;
 
-import com.ewerp.engine.EjMudException;
+import com.ewerp.engine.EjAppException;
 import com.ewerp.engine.plugins.ILifecycleListener;
 import com.ewerp.engine.plugins.IPlugin;
 import com.ewerp.engine.plugins.IPluginManager;
@@ -46,7 +46,7 @@ public class CommandEngine implements IPlugin, ICommandEngine, ILifecycleListene
     protected AtomicBoolean shutdown = new AtomicBoolean(false);
 
     @Override
-    public void pushCommand(ICommand command) throws IllegalArgumentException, EjMudException {
+    public void pushCommand(ICommand command) throws IllegalArgumentException, EjAppException {
         if (command == null) {
             throw new IllegalArgumentException("Parameter [command] MAY NOT be null");
         }
@@ -54,7 +54,7 @@ public class CommandEngine implements IPlugin, ICommandEngine, ILifecycleListene
         try {
             commandQueue.put(command);
         } catch (Exception e) {
-            throw new EjMudException("Unable to push command onto the stack", e);
+            throw new EjAppException("Unable to push command onto the stack", e);
         }
     }
 

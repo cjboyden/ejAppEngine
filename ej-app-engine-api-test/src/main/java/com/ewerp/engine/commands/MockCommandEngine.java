@@ -1,6 +1,6 @@
 package com.ewerp.engine.commands;
 
-import com.ewerp.engine.EjMudException;
+import com.ewerp.engine.EjAppException;
 import com.ewerp.engine.plugins.IPluginManager;
 
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class MockCommandEngine implements ICommandEngine {
     public IPluginManager pluginManager;
 
     @Override
-    public void pushCommand(ICommand command) throws IllegalArgumentException, EjMudException {
+    public void pushCommand(ICommand command) throws IllegalArgumentException, EjAppException {
         if(null == command) {
             throw new IllegalArgumentException();
         }

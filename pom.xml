@@ -21,7 +21,7 @@
         <module>ej-app-engine-session-manager</module>
     </modules>
 
-    <name>ejMud</name>
+    <name>ej-app-engine</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

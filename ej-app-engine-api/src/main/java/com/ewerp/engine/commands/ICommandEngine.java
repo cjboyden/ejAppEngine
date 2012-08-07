@@ -16,7 +16,7 @@ package com.ewerp.engine.commands;
  * limitations under the License.
  */
 
-import com.ewerp.engine.EjMudException;
+import com.ewerp.engine.EjAppException;
 
 /**
  * The {@link ICommandEngine} executes {@link ICommand} from a {@link ICommand}
@@ -37,8 +37,8 @@ public interface ICommandEngine {
      *                {@link IllegalArgumentException}</li>
      *                </ul>
      * @throws IllegalArgumentException Must be thrown if {@link ICommand} is null
-     * @throws EjMudException           Thrown if an error occurs pushing the {@link ICommand} into
+     * @throws com.ewerp.engine.EjAppException           Thrown if an error occurs pushing the {@link ICommand} into
      *                                  the queue
      */
-    public void pushCommand(ICommand command) throws IllegalArgumentException, EjMudException;
+    public void pushCommand(ICommand command) throws IllegalArgumentException, EjAppException;
 }
