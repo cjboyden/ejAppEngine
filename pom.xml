@@ -16,7 +16,9 @@
         <module>ejmud-logging</module>
         <module>ejmud-configuration</module>
         <module>ejmud-plugin-manager</module>
+        <module>ejmud-content-manager</module>
         <module>ejmud-command-engine</module>
+        <module>ejmud-session-manager</module>
     </modules>
 
     <name>ejMud</name>

@@ -1,1 +1,19 @@
 ejAppEngine - The Ewerp Java Application Engine
+
+Modules:
+ej-app-eng-api - API
+ej-app-eng-server - Game server / game specific objects & commands
+ej-app-eng-command-engine
+ej-app-eng-content-manager
+ej-app-eng-logging
+ej-app-eng-plugin-manager
+ej-app-eng-configuration
+ej-app-eng-session-manager - Contains basic session implementations: telnet, html, cli, etc...
+
+TODOs:
+Add Logging to ALL modules
+Add IPluginManager usage in Unit Tests and remove superfluos methods that add items that could otherwise be requested
+    through the IPluginManager
+Clean up / add more / clarify API documentation
+Add persistence to ejmud-content-manager
+
