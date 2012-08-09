@@ -4,6 +4,7 @@ import com.ewerp.engine.plugins.ILifecycleListener;
 import com.ewerp.engine.plugins.IPlugin;
 import com.ewerp.engine.plugins.IPluginManager;
 import com.ewerp.engine.properties.IProperties;
+import com.ewerp.engine.sessions.AbstractSessionFactory;
 import com.ewerp.engine.sessions.ISessionFactory;
 import com.ewerp.engine.sessions.ISessionManager;
 
@@ -29,73 +30,30 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-public abstract class SocketSessionFactory implements ISessionFactory, IPlugin, ILifecycleListener, Runnable {
-    private ISessionManager sessionManager;
-
+public abstract class SocketSessionFactory extends AbstractSessionFactory implements Runnable {
     protected ServerSocket serverSocket;
     protected Thread serverThread;
-
-    private IPluginManager pluginManager;
-    private IProperties properties;
 
     public static String FIELD_SERVER_PORT = "terminal-port";
     private static String SERVER_PORT = "37209";
 
     protected AtomicBoolean shutdown = new AtomicBoolean(false);
 
-    protected String getProperty(String key, String defaultValue) {
-        String result = null;
-
-        if(null != properties) {
-            result = properties.getProperty(key);
-        }
-
-        if(null == result) {
-            result = defaultValue;
-        }
-
-        return result;
-    }
-
-    @Override
-    public void registerSessionManager(ISessionManager sessionManager) throws IllegalArgumentException {
-        if(null == sessionManager) {
-            throw new IllegalArgumentException();
-        }
-
-        this.sessionManager = sessionManager;
-    }
-
-    /**
-     * Configure the server (Get configuration information from an {@link com.ewerp.engine.properties.IProperties} instance)
-     * -- Server URL / port
-     * -- Attach ICommand generator(s) / IMessage interpreter(s)
-     */
-    @Override
-    public void init() {
-        if(null != pluginManager) {
-            properties = (IProperties)pluginManager.getPlugin(IProperties.class);
-        }
-
-        try {
-            String serverPort = getProperty(SocketSessionFactory.FIELD_SERVER_PORT, SERVER_PORT);
-            serverSocket = new ServerSocket(Integer.parseInt(serverPort));
-
-            serverThread = new Thread(this);
-
-        } catch (IOException e) {
-            // Todo: Connect to logger
-            e.printStackTrace();
-        }
-    }
-
-    /**
+     /**
      * Run the server / start the listener thread to begin accepting connections
      */
     @Override
     public void start() {
-        if(null != serverThread && !serverThread.isAlive()) {
-            serverThread.start();
+        try {
+            serverSocket = new ServerSocket(Integer.parseInt(null != getProperties() ? getProperties().getProperty(SocketSessionFactory.FIELD_SERVER_PORT, SERVER_PORT) : SERVER_PORT));
+            serverThread = new Thread(this);
+
+            if(null != serverThread && !serverThread.isAlive()) {
+                serverThread.start();
+            }
+        } catch (IOException e) {
+            // Todo: Connect to logger
+            e.printStackTrace();
         }
     }
 
@@ -138,20 +96,6 @@ public abstract class SocketSessionFactory implements ISessionFactory, IPlugin, 
             //TODO: log
             e.printStackTrace();
         }
-    }
-
-    protected IPluginManager getPluginManager() {
-        return pluginManager;
-    }
-
-    @Override
-    public void registerPluginManager(IPluginManager pluginManager) {
-        this.pluginManager = pluginManager;
-    }
-
-    @Override
-    public List<Class<?>> getInterfaces() {
-        return Arrays.asList(new Class<?>[]{ISessionFactory.class});
     }
 
     protected abstract ITerminalSession createSocketSession(Socket socket);

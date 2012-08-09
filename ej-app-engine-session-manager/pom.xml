@@ -22,6 +22,12 @@
 
         <dependency>
             <groupId>com.ewerp.engine</groupId>
+            <artifactId>ej-app-engine-plugin-manager</artifactId>
+            <version>0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ewerp.engine</groupId>
             <artifactId>ej-app-engine-api-test</artifactId>
             <version>0.1</version>
             <scope>test</scope>
